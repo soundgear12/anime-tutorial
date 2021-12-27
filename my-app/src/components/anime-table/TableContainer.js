@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from "./Table"
+import ResetButton from './ResetButton';
 import KH from '../../res/gifs/KH.gif'
 
 export default class TableContainer extends Component {
@@ -21,7 +22,8 @@ export default class TableContainer extends Component {
         return (
             <div>
                 <div className='centered-row' style={{ paddingTop: 10, paddingBottom: 10 }}>
-                    <p className='table-title'>Anime Information</p>    
+                    <p className='table-title'>Anime Information</p>
+                    <ResetButton onClick={() => console.log("reset button clicked!")} />    
                 </div>
 
                 <div className='centered-row'>

@@ -1,0 +1,48 @@
+:root {
+    --primary-green: #5dc0a6;
+    --primary-dark-green: #267346;
+    --primary-red: #f94943;
+    --primary-dark-blue: #1B1834;
+    --primary-blue-black: #1B1919;
+    --primary-silver: #8B8897;
+}
+
+body {
+    background-color: var(--primary-dark-blue);
+    color: white;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+    cursor: default;
+}
+
+.centered-row {
+    text-align: center;
+}
+
+.table-title {
+    padding: 7px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+.anime-table {
+    margin: 60px;
+    background-color: white;
+    color: black;
+}
+
+.reset-button {
+    margin-left: 10px;
+    color: white;
+    background-color: var(--primary-green);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.reset-button:hover {
+    background-color: var(--primary-red);
+}
