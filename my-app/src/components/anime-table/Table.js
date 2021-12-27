@@ -3,12 +3,13 @@ import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
 
 const Table = ({ data }) => {
-    const firstRow = data[0]
-    const columns = []
-
-    for (let key in firstRow) {
-        columns.push({ Header: key, accessor: key })
+    if (!data || !data[0]) {
+        return null
     }
+
+    const columns = Object.keys(data[0]).map(key => {
+        return { Header: key, accessor: key }
+    })
 
     return (
         <ReactTable
