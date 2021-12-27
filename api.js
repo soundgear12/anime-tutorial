@@ -1,9 +1,8 @@
-const { query } = require('express')
 const express = require('express')
+const cors = require('cors')
 const mysql = require('mysql')
 
 const app = express()
-
 const port = 4000
 
 const db = mysql. createConnection({
@@ -14,9 +13,10 @@ const db = mysql. createConnection({
     database: 'Tutorial'
 })
 
+app.use(cors())
 
 app.get('/getAllAnime', (req, res) => {
-    const sql = "SELECT * FROM ANIME"
+    const query = "SELECT * FROM ANIME"
     db.query(query, (err, rows) => {
         if (err) throw err;
         res.send(rows)
