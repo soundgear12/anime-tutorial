@@ -46,3 +46,37 @@ a {
 .reset-button:hover {
     background-color: var(--primary-red);
 }
+
+.loading-bar {
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.loading-icon {
+    display: block;
+    margin: auto;
+}
+
+.menu-bar {
+    background-color: var(--primary-blue-black);
+    display: flow-root;
+    margin: -7px;
+}
+
+.menu-bar-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-bar-items > li > a {
+    float: right;
+    padding: 13px;
+    color: var(--primary-silver);
+}
+
+.menu-bar-items > li a:hover {
+    background-color: var(--primary-dark-green);
+    color: white;
+}
