@@ -2,18 +2,26 @@ import React, { Component } from 'react';
 import Table from "./Table"
 import ResetButton from './ResetButton';
 import KH from '../../res/gifs/KH.gif'
+import AnimeStore from '../../stores/AnimeStore';
+import Actions from '../../actions';
 
 export default class TableContainer extends Component {
     state = {
-        data: []
+        animes: []
     }
 
     componentDidMount() {
-        fetch('http://localhost:4000/getAllAnime')
-            .then(res => res.json())
-            .then(json => {
-                this.setState({data: json})
-            })
+        AnimeStore.listen(this.onChange)
+        Actions.getAnimes("")
+    }
+
+    componentWillUnmount() {
+        AnimeStore.unlisten(this.onChange)
+    }
+
+    onChange = store => {
+        const { animes } = store
+        this.setState({ animes })
     }
 
     render() {
@@ -30,7 +38,7 @@ export default class TableContainer extends Component {
                     <img src={KH} alt='kingdom-hearts' />
                 </div>
 
-                <Table data={this.state.data} />
+                <Table data={this.state.animes} />
             </div>    
         )
     }
