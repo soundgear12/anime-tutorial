@@ -1,7 +1,7 @@
 import React from "react";
 import ReactTable from 'react-table-6';
-import Loadingbar from '../loader/LoadingBar'
 import 'react-table-6/react-table.css';
+import Loadingbar from '../loader/LoadingBar'
 
 const Table = ({ data }) => {
     if (!data || !data[0]) {
@@ -14,7 +14,7 @@ const Table = ({ data }) => {
 
     return (
         <ReactTable
-            className="-striped -highlight"
+            className="-striped -highlight anime-table"
             data={data}
             columns={columns}
             defaultPageSize={100}

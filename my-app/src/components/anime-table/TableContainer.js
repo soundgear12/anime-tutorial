@@ -24,21 +24,38 @@ export default class TableContainer extends Component {
         this.setState({ animes })
     }
 
+    handleDelete = event => {
+        const { id } = event.target
+        Actions.deleteAnime(id)
+    }
+
+    handleReset = () => {
+        Actions.resetAnimeTable("")
+        Actions.resetAnimeGenreTable("")
+        Actions.resetUserTable("")
+        Actions.resetReviewTable("")
+        Actions.resetUserReviewTable("")
+    }
+
     render() {
-        console.log(this.state)
+        const data = this.state.animes.map(anime => {
+            anime.Actions = <i className='fa fa-trash-alt delete-button' id={anime.anime_id} onClick={this.handleDelete} title='Delete' />
+
+            return anime
+        })
 
         return (
             <div>
                 <div className='centered-row' style={{ paddingTop: 10, paddingBottom: 10 }}>
                     <p className='table-title'>Anime Information</p>
-                    <ResetButton onClick={() => console.log("reset button clicked!")} />    
+                    <ResetButton onClick={this.handleReset} />    
                 </div>
 
                 <div className='centered-row'>
                     <img src={KH} alt='kingdom-hearts' />
                 </div>
 
-                <Table data={this.state.animes} />
+                <Table data={data} />
             </div>    
         )
     }

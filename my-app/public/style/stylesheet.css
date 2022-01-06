@@ -2,6 +2,7 @@
     --primary-green: #5dc0a6;
     --primary-dark-green: #267346;
     --primary-red: #f94943;
+    --primary-dark-red: rgba(255, 7, 0, 1);
     --primary-dark-blue: #1B1834;
     --primary-blue-black: #1B1919;
     --primary-silver: #8B8897;
@@ -79,4 +80,12 @@ a {
 .menu-bar-items > li a:hover {
     background-color: var(--primary-dark-green);
     color: white;
+}
+
+.delete-button {
+    color: var(--primary-red);
+}
+
+.delete-button:hover {
+    color: var(--primary-dark-red);
 }
