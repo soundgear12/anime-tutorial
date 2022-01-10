@@ -1,7 +1,8 @@
 const express = require('express')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 const mysql = require('mysql')
-const SqlString = require('mysql/lib/protocol/SqlString')
+
 
 const app = express()
 const port = 4000
@@ -16,6 +17,9 @@ const db = mysql. createConnection({
 })
 
 app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 function executeQuery(query, res) {
     db.query(query, (err, rows) => {
@@ -73,5 +77,29 @@ app.get('/resetUserReviews', (req, res) => {
     executeQuery(sql, res)
 })
 
+
+app.get('/allGenres', (req, res) => {
+    const sql = "SELECT * FROM GENRES WHERE ID != 1"
+    executeQuery(sql, res)
+})
+
+app.get('/largestAnimeId', (req, res) => {
+    const sql = "SELECT MAX(anime_id) AS largest_anime_id FROM Anime"
+    executeQuery(sql, res)
+})
+
+app.post('/addAnime/:name/:animeId/:type/:episodes/:rating/:members/:genres', (req, res) => {
+    const insertAnime = `INSERT INTO Anime (name, anime_id, type, episodes, rating, members) 
+      VALUES ('${req.body.name}', ${req.body.animeId}, '${req.body.type}',
+               ${req.body.episodes}, ${req.body.rating}, ${req.body.members})`
+    
+    const insertAnimeGenres = Object.keys(req.body.genres).map(key => {
+      const id = req.body.genres[key]
+      return `INSERT INTO Anime_Genre (anime_id, genre_id) VALUES ('${req.body.animeId}', ${id})`
+    })
+
+    const queries = [insertAnime, ...insertAnimeGenres]
+    executeQuery(queries.join(';'), res)
+})    
 
 app.listen(port, () => console.log(`REST API listening on port ${port}`))
